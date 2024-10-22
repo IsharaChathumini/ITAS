@@ -32,7 +32,7 @@ const Home = () => {
                     }}
                 >
                     <Typography variant="h3" sx={{ marginBottom: '20px', fontWeight: 'bold' }}>
-                        Welcome to the Industrial Training Allocation System
+                        Welcome to the Industrial Training Allocation System!
                     </Typography>
                     <Typography variant="h6" sx={{ marginBottom: '20px', color: palette.primary.main }}>
                         Faculty of Engineering, University of Ruhuna
