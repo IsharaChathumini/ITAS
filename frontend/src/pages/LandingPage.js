@@ -11,7 +11,7 @@ import LoadingBox from '../component/LoadingBox'
 import CardElementFront from '../component/CardElementFront'
 import Footer from '../component/Footer'
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import Button from '@mui/material/Button';
+
 
 
 const LandingPage = () => {
