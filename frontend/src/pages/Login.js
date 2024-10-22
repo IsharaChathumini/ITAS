@@ -15,7 +15,7 @@ import { useNavigate } from 'react-router-dom'
 
 const validationSchema = yup.object({
     studentmail: yup
-        .string('Enter your email')
+        .string('Enter your Email')
         .email('Enter a valid email')
         .required('Email is required'),
     password: yup
