@@ -27,36 +27,36 @@ const validationSchema = yup.object({
         .string('Enter your password')
         .min(8, 'Password should be of minimum 8 characters length')
         .required('Password is required'),
+    gpa: yup
+        .number('Enter your GPA')
+        .min(0, 'GPA must be at least 0')
+        .max(4, 'GPA must be at most 4')
+        .required('GPA is required'),
 });
-
 
 
 const Register = () => {
     const dispatch = useDispatch();
-
 
     const formik = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
             studentmail: '',
-            password: ''
+            password: '',
+            gpa: '' // Initialize GPA field
         },
         validationSchema: validationSchema,
         onSubmit: (values, actions) => {
-            //alert(JSON.stringify(values, null, 2));
             dispatch(userSignUpAction(values));
             actions.resetForm();
         }
-
     })
 
     return (
         <>
             <Navbar />
             <Box sx={{ minHeight: 'calc(100vh - 140px)', display: "flex", alignItems: "center", justifyContent: "center", bgcolor: "primary.white" }}>
-
-
                 <Box onSubmit={formik.handleSubmit} component="form" className='form_style border-style' >
                     <Box sx={{ display: "flex", flexDirection: "column", alignItems: "center", width: "100%" }}>
                         <Avatar sx={{ m: 1, bgcolor: "primary.main", mb: 3 }}>
@@ -74,10 +74,7 @@ const Register = () => {
                             id="firstName"
                             label="First Name"
                             name='firstName'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-
+                            InputLabelProps={{ shrink: true, }}
                             placeholder="First Name"
                             value={formik.values.firstName}
                             onChange={formik.handleChange}
@@ -97,10 +94,7 @@ const Register = () => {
                             id="lastName"
                             label="Last Name"
                             name='lastName'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-
+                            InputLabelProps={{ shrink: true, }}
                             placeholder="Last Name"
                             value={formik.values.lastName}
                             onChange={formik.handleChange}
@@ -118,12 +112,9 @@ const Register = () => {
                             }}
                             fullWidth
                             id="studentmail"
-                            label="studentmail"
+                            label="Student Email"
                             name='studentmail'
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
-
+                            InputLabelProps={{ shrink: true, }}
                             placeholder="E-mail"
                             value={formik.values.studentmail}
                             onChange={formik.handleChange}
@@ -140,13 +131,31 @@ const Register = () => {
                                 fieldset: { borderColor: "rgb(231, 235, 240)" }
                             }}
                             fullWidth
+                            id="gpa"
+                            label="GPA"
+                            name='gpa'
+                            InputLabelProps={{ shrink: true, }}
+                            placeholder="GPA (e.g., 3.567)"
+                            value={formik.values.gpa}
+                            onChange={formik.handleChange}
+                            onBlur={formik.handleBlur}
+                            error={formik.touched.gpa && Boolean(formik.errors.gpa)}
+                            helperText={formik.touched.gpa && formik.errors.gpa}
+                        />
+                        <TextField
+                            sx={{
+                                mb: 3,
+                                "& .MuiInputBase-root": {
+                                    color: 'text.secondary'
+                                },
+                                fieldset: { borderColor: "rgb(231, 235, 240)" }
+                            }}
+                            fullWidth
                             id="password"
                             name="password"
                             label="Password"
                             type="password"
-                            InputLabelProps={{
-                                shrink: true,
-                            }}
+                            InputLabelProps={{ shrink: true, }}
                             placeholder="Password"
                             value={formik.values.password}
                             onChange={formik.handleChange}
@@ -155,7 +164,7 @@ const Register = () => {
                             helperText={formik.touched.password && formik.errors.password}
                         />
 
-                        <Button fullWidth variant="contained" type='submit' >Register</Button>
+                        <Button fullWidth variant="contained" type='submit'>Register</Button>
                     </Box>
                 </Box>
             </Box>
@@ -164,4 +173,4 @@ const Register = () => {
     )
 }
 
-export default Register
+export default Register;

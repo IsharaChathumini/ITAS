@@ -80,7 +80,7 @@ const SidebarAdm = () => {
                                     <MenuItem component={<Link to="/admin/users" />} icon={<GroupAddIcon />}> Users </MenuItem>
                                     <MenuItem component={<Link to="/admin/trainings" />} icon={<WorkIcon />}> Trainings </MenuItem>
                                     <MenuItem component={<Link to="/admin/category" />} icon={<CategoryIcon />}> Category </MenuItem>
-                                    <MenuItem component={<Link to="/admin/category" />} icon={<CategoryIcon />}> Final List </MenuItem>
+                                    <MenuItem component={<Link to="/admin/finallist" />} icon={<GroupAddIcon />}> Final List </MenuItem>
                                 </>
                             ) : (
                                 <>

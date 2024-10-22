@@ -26,6 +26,7 @@ import DashCreateTraining from './pages/admin/DashCreateTraining';
 import Register from './pages/Register';
 import HereAddTraining from './pages/user/HereAddTraining';
 import LandingPage from './pages/LandingPage';
+import FinalList from './pages/admin/FinalList';
 
 //HOC
 const UserDashboardHOC = Layout(userDashboard);
@@ -38,6 +39,7 @@ const DashCategoryHOC = Layout(DashCategory)
 const DashCreateTrainingHOC = Layout(DashCreateTraining)
 const DashCreateCategoryHOC = Layout(DashCreateCategory)
 const DashAdminEditTrainingHOC = Layout(DashEditTraining);
+const FinalListHOC = Layout(FinalList);
 
 const App = () => {
 
@@ -58,6 +60,7 @@ const App = () => {
                         <Route path='/training/:id' element={<SingleTraining />} />
                         <Route path='/admin/dashboard' element={<AdminRoute><AdminDashboardHOC /></AdminRoute>} />
                         <Route path='/admin/users' element={<AdminRoute><DashUsersHOC /></AdminRoute>} />
+                        <Route path='/admin/finallist' element={<AdminRoute><FinalListHOC /></AdminRoute>} />
                         <Route path='/admin/trainings' element={<AdminRoute><DashTrainingsHOC /></AdminRoute>} />
                         <Route path='/admin/category' element={<AdminRoute><DashCategoryHOC /></AdminRoute>} />
                         <Route path='/admin/training/create' element={<AdminRoute><DashCreateTrainingHOC /></AdminRoute>} />
