@@ -1,0 +1,5 @@
+// src/constants/userTrainingConstants.js
+
+export const DELETE_TRAINING_REQUEST = 'DELETE_TRAINING_REQUEST';
+export const DELETE_TRAINING_SUCCESS = 'DELETE_TRAINING_SUCCESS';
+export const DELETE_TRAINING_FAIL = 'DELETE_TRAINING_FAIL';

@@ -1,0 +1,87 @@
+import { Card, CardContent, Stack, Typography } from '@mui/material'
+import { Box, Container } from '@mui/system'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
+import Footer from '../component/Footer'
+import LoadingBox from '../component/LoadingBox'
+import Navbar from '../component/Navbar'
+import { trainingLoadSingleAction } from '../redux/actions/trainingAction'
+import Button from '@mui/material/Button'
+import { userApplyTrainingAction } from '../redux/actions/userAction'
+import { Link } from 'react-router-dom'
+
+const SingleTraining = () => {
+    const dispatch = useDispatch();
+    const {singleTraining, loading } = useSelector(state => state.singleTraining)
+    const { id } = useParams();
+    useEffect(() => {
+        dispatch(trainingLoadSingleAction(id));
+    }, [id]);
+
+   const applyForATraining = () => {
+        dispatch(userApplyTrainingAction({
+            title: singleTraining && singleTraining.title,
+            description: singleTraining && singleTraining.description,
+            salary: singleTraining && singleTraining.salary,
+            location: singleTraining && singleTraining.location
+        }))
+    }
+
+    return (
+        <>
+
+            <Box sx={{ bgcolor: "#fafafa" }}>
+
+                <Navbar />
+                <Box sx={{ height: '85vh' }}>
+                    <Container sx={{ pt: '30px' }}>
+
+                        <Stack
+                            direction={{ xs: 'column', sm: 'row' }}
+                            spacing={{ xs: 1, sm: 2, md: 4 }}
+                        >
+                            <Box sx={{ flex: 4, p: 2 }}>
+
+                                {
+                                    loading ? <LoadingBox /> :
+
+                                        <Card>
+                                            <CardContent>
+                                                <Typography variant="h5" component="h3">
+                                                    {singleTraining && singleTraining.title}
+                                                </Typography>
+                                                <Typography variant="body2">
+                                                    <Box component="span" sx={{ fontWeight: 700 }}>Salary</Box>: ${singleTraining && singleTraining.salary}
+                                                </Typography>
+                                                <Typography variant="body2">
+                                                    <Box component="span" sx={{ fontWeight: 700 }}>Category</Box>: {singleTraining && singleTraining.trainingType ? singleTraining.trainingType.trainingTypeName : "No category"}
+                                                </Typography>
+                                                <Typography variant="body2">
+                                                    <Box component="span" sx={{ fontWeight: 700 }}>Location</Box>: {singleTraining && singleTraining.location}
+                                                </Typography>
+                                                <Typography variant="body2" sx={{ pt: 2 }}>
+                                                    {/* <h3>Job description:</h3> */}
+                                                    {singleTraining && singleTraining.description}
+                                                </Typography>
+                                            </CardContent>
+                                        </Card>
+                                }
+                            </Box>
+                            
+
+                        </Stack>
+
+                    </Container>
+                </Box>
+                <Button variant="contained" size="medium" sx={{ position: 'fixed', bottom: 100, right: 200 }}>
+                <Link style={{ textDecoration: "none", color: "white", boxShadow: 0 }} to={`/new-homepage`}>Back</Link>
+                </Button>
+               
+                <Footer />
+            </Box>
+        </>
+    )
+}
+
+export default SingleTraining
