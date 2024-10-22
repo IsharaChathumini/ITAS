@@ -44,7 +44,7 @@ const HomeNavbar = () => {
         setAnchorElUser(null);
     };
 
-    // log out user
+    // Log out user
     const logOutUser = () => {
         dispatch(userLogoutAction());
         window.location.reload(true);
